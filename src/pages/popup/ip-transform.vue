@@ -1,6 +1,9 @@
 <template>
-  <div class="ip-transform">
-    <button @click="tranformIP">本地转内网ip</button>
+  <div class="option-item" @click="localToNetwork">
+      <span class="icon">
+        <img src="~@/assets/link.png" alt="本地转内网ip" width="20px" >
+      </span>
+        <span>local转换network</span>
   </div>
 </template>
 
@@ -11,10 +14,7 @@ import getIP from '@/utils/getIP';
 export default {
   name: "IpTransform",
   methods: {
-    tranformIP () {
-        getIP().then((ip) => {
-            console.log(ip);
-        });
+    localToNetwork () {
         chrome.tabs.getSelected(null, (tab) => {
             let url = tab.url;
             let regx = /localhost|127.0.0.1/;
@@ -37,7 +37,4 @@ export default {
 </script>
 
 <style lang="less">
-.ip-transform{
-  //
-}
 </style>
