@@ -9,7 +9,9 @@ function setClock (newTime) {
     if (newTime) time = newTime;
     clearInterval(interval);
     interval = setInterval(function(){
-        let currentTime = (new Date()).getHours();
+        let now = new Date();
+        if (now.getDay() === 0 || now.getDay() === 6) {return;}
+        let currentTime = now.getHours();
         if (currentTime < 17 && currentTime >= Number(time.substr(0, 2))) {
             new Notification('通知', {
                 icon: 'icons/icons.png',
