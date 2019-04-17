@@ -4,7 +4,7 @@
             <span class="icon">
                 <img src="~@/assets/link.png" alt="本地转内网ip" width="20px">
             </span>
-            <span>local转换network</span>
+            <span>生成二维码</span>
         </div>
         <img :src="img" alt="" v-show="img">
     </div>
@@ -40,13 +40,14 @@ export default {
                         // })
                     });
                 } else {
-                    alert("不是localhost地址");
+                    QRCode.toDataURL(url).then(img => {
+                        this.img = img;
+                    }).catch(err => {
+                        console.error(err);
+                    });
                 }
             });
         }
     }
 };
 </script>
-
-<style lang="less">
-</style>
